@@ -1,0 +1,37 @@
+// Задача 2: Задайте массив заполненный случайными трёхзначными числами.
+//  Напишите программу, которая покажет количество чётных чисел в массиве.
+
+int[] RandomArray()
+{
+Console.WriteLine("Введите размер массива");
+int lengthArray = Convert.ToInt32(Console.ReadLine());
+int[] array = new int[lengthArray];
+Random rand = new Random();
+for(int i = 0; i < array.Length; i++)
+    {
+    array[i] = rand.Next(100, 999);
+    Console.Write($"{array[i]} ");
+    }
+    return array;
+}
+
+int[] array = RandomArray();
+
+int EvenNumbered()
+{
+    int result = 0;
+ for(int i = 0; i < array.Length; i++)
+ {
+    
+     if (array[i] % 2 == 0)
+    {
+        result++;
+    }
+ }
+ return result;
+
+}
+
+int result = EvenNumbered();
+Console.WriteLine();
+Console.WriteLine(string.Join(", ", result));
