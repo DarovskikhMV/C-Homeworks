@@ -60,16 +60,16 @@ for (int i = 0; i < dimentionalArray.GetLength(0); i++)
             }
         }
     }
-int [,] result = new int[dimentionalArray.GetLength(0) - 1, dimention-alArray.GetLength(1)-1];
+int [,] result = new int[dimentionalArray.GetLength(0) - 1, dimentionalArray.GetLength(1)-1];
 int rowIndex = 0;
 int columnIndex = 0;
 for(int i = 0; i < dimentionalArray.GetLength(0); i++)
 {
-    if (i != minimalRow)
+    if (i != minimalRow) 
     {
-        for(int j = 0; j < dimentionalArray.GetLength(0); j++)
+        for(int j = 0; j < dimentionalArray.GetLength(1); j++)
         {
-            if (j != minimalColumn)
+            if (j != minimalColumn) 
             {
                 result[rowIndex, columnIndex] = dimentionalArray[i,j];
                 columnIndex++;
