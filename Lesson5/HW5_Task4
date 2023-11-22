@@ -1,0 +1,85 @@
+// Задача 4*(не обязательная): Задайте двумерный массив из целых чисел.
+// Напишите программу, которая удалит строку и столбец,
+// на пересечении которых расположен наименьший элемент массива. 
+// Под удалением понимается создание нового двумерного массива без строки и столбца. 
+// Если минимальных элементов несколько, то брать любой из них.
+
+using System.Globalization;
+
+int ReadNumber(string message)  // метод для ввода с клавиатуры
+{
+    Console.WriteLine(message);
+    return Convert.ToInt32(Console.ReadLine());
+}
+
+int[,] GetMatrix(int rows, int columns)   // создание матрицы со случайными чис-лами
+{
+    int[,] matrix = new int[rows, columns];
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = Convert.ToInt32(new Random().Next(0, 15));
+        }
+    }
+
+    return matrix;
+}
+
+void PrintMatrix(int[,] matrix)    // печать массива
+
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int rowsCount = ReadNumber("Введите количество строк");
+int columnsCount = ReadNumber("Введите количество столбцов");
+int[,] dimentionalArray = GetMatrix(rowsCount, columnsCount);
+PrintMatrix(dimentionalArray);
+
+int minElement = dimentionalArray[0, 0];
+int minimalRow = 0;
+int minimalColumn = 0;
+for (int i = 0; i < dimentionalArray.GetLength(0); i++)
+    {
+        for (int j = 0; j < dimentionalArray.GetLength(1); j++)
+        {
+            if(dimentionalArray[i,j] < minElement)
+            {
+                minElement = dimentionalArray[i,j];
+                minimalRow = i;
+                minimalColumn = j;
+            }
+        }
+    }
+int [,] result = new int[dimentionalArray.GetLength(0) - 1, dimention-alArray.GetLength(1)-1];
+int rowIndex = 0;
+int columnIndex = 0;
+for(int i = 0; i < dimentionalArray.GetLength(0); i++)
+{
+    if (i != minimalRow)
+    {
+        for(int j = 0; j < dimentionalArray.GetLength(0); j++)
+        {
+            if (j != minimalColumn)
+            {
+                result[rowIndex, columnIndex] = dimentionalArray[i,j];
+                columnIndex++;
+            }
+        }
+        rowIndex++;
+        columnIndex = 0;
+    }
+}
+
+Console.WriteLine();
+PrintMatrix(result);
+
