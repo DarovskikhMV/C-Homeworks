@@ -1,0 +1,63 @@
+// Задайте прямоугольный двумерный массив. 
+// Напишите программу, которая будет находить
+//  строку с наименьшей суммой элементов.
+int ReadNumber(string message)  // метод для ввода с клавиатуры
+{
+    Console.WriteLine(message);
+    return Convert.ToInt32(Console.ReadLine());
+}
+
+int[,] GetMatrix(int rows, int columns)   // создание матрицы со случайными чис-лами
+{
+    int[,] matrix = new int[rows, columns];
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = Convert.ToInt32(new Random().Next(0, 15));
+        }
+    }
+
+    return matrix;
+}
+
+void PrintMatrix(int[,] matrix)    // печать массива
+
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int rowsCount = ReadNumber("Введите количество строк");
+int columnsCount = ReadNumber("Введите количество столбцов");
+int[,] dimentionalArray = GetMatrix(rowsCount, columnsCount);
+PrintMatrix(dimentionalArray);
+
+int SumLineArray(int[,] array, int i)  //сумма элементов в строке
+{
+int sum = array[i,0];
+for (int j = 1; j < array.GetLength(1); j++)
+{
+sum += array[i,j];
+}
+return sum;
+}
+
+int minSum = 1;
+int sum = SumLineArray(dimentionalArray, 0);
+for (int i = 1; i < dimentionalArray.GetLength(0); i++)
+{
+if (sum > SumLineArray(dimentionalArray, i))
+{
+sum = SumLineArray(dimentionalArray, i);
+minSum = i+1;
+}
+}
+Console.WriteLine($"\nСтрока c наименьшей суммой элементов: {minSum}");
