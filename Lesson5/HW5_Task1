@@ -48,9 +48,10 @@ Console.WriteLine("Введите элемент x ");
 int firstIndex = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите элемент y ");
 int secondIndex = Convert.ToInt32(Console.ReadLine());
-if ((firstIndex > rowsCount && secondIndex > rowsCount) ||
- (firstIndex > rowsCount && secondIndex < rowsCount) ||
- (firstIndex < rowsCount && secondIndex > rowsCount)) 
+if ((firstIndex >= rowsCount   && secondIndex >= columnsCount ) ||
+ (firstIndex >= rowsCount   && secondIndex <= columnsCount  ) ||
+ (firstIndex <= rowsCount  && secondIndex >= columnsCount ))
+  
  {
     Console.WriteLine("Такого элемента в массиве не существует");
  }
