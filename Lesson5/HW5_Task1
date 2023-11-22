@@ -1,0 +1,63 @@
+// Задача 1: Напишите программу, которая на вход
+// принимает позиции элемента в двумерном массиве, и
+// возвращает значение этого элемента или же указание,
+// что такого элемента нет
+
+int ReadNumber(string message)  // метод для ввода с клавиатуры
+{
+    Console.WriteLine(message);
+    return Convert.ToInt32(Console.ReadLine());
+}
+
+int[,] GetMatrix(int rows, int columns)   // создание матрицы со случайными чис-лами
+{
+    int[,] matrix = new int[rows, columns];
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = Convert.ToInt32(new Random().Next(0, 15));
+        }
+    }
+
+    return matrix;
+}
+
+void PrintMatrix(int[,] matrix)    // печать массива
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write(matrix[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int rowsCount = ReadNumber("Введите количество строк");
+int columnsCount = ReadNumber("Введите количество столбцов");
+int[,] dimentionalArray = GetMatrix(rowsCount, columnsCount);
+PrintMatrix(dimentionalArray);
+ElementSearch();
+
+void ElementSearch()
+{
+Console.WriteLine("Введите элемент x ");
+int firstIndex = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите элемент y ");
+int secondIndex = Convert.ToInt32(Console.ReadLine());
+if ((firstIndex > rowsCount && secondIndex > rowsCount) ||
+ (firstIndex > rowsCount && secondIndex < rowsCount) ||
+ (firstIndex < rowsCount && secondIndex > rowsCount)) 
+ {
+    Console.WriteLine("Такого элемента в массиве не существует");
+ }
+else
+{  
+    int result = dimentionalArray[firstIndex, secondIndex];
+    Console.WriteLine("Элемент найден " + result);
+}
+}
+
