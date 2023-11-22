@@ -1,0 +1,19 @@
+//Задача 1: Задайте двумерный массив символов (тип char
+// [,]). Создать строку из символов этого массива. 
+
+char[,] array = {{'a', 'b', 'c'}, 
+                 {'d', 'e', 'f'}};
+
+string ArrayString(char[,] array)    // перевод из двумерного массива в строку
+{
+string result = string.Empty;   
+for (int i = 0; i < array.GetLength(0); i++)
+{
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+        result = result + array[i, j];
+    }    
+}
+return result;
+}
+Console.WriteLine(ArrayString(array));
