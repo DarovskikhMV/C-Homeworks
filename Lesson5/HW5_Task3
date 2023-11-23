@@ -40,24 +40,31 @@ int columnsCount = ReadNumber("Введите количество столбц�
 int[,] dimentionalArray = GetMatrix(rowsCount, columnsCount);
 PrintMatrix(dimentionalArray);
 
-int SumLineArray(int[,] array, int i)  //сумма элементов в строке
+SumLineArray(dimentionalArray);
+
+void SumLineArray (int[,] numbers)
 {
-int sum = array[i,0];
-for (int j = 1; j < array.GetLength(1); j++)
-{
-sum += array[i,j];
-}
-return sum;
+    int [] summLines = new int[numbers.GetLength(0)];
+    Console.Write("\nСуммы элементов в каждой строке: " );
+    for(int i = 0; i < numbers.GetLength(0); i++)
+    {
+        for(int j = 0; j < numbers.GetLength(1); j++)
+        {
+            summLines[i] += numbers[i,j];
+
+        }
+        Console.Write($"{summLines[i]} ");
+    }
+    
+    int minI = 0;
+    for (int i = 0; i < summLines.Length; i++)
+    {
+        if(summLines[minI] > summLines[i])
+        {
+            minI = i;
+        }
+    }
+    Console.Write($"\nНаименьшая сумма элементов: {summLines[minI]} номер строки {minI +1}");
+    
 }
 
-int minSum = 1;
-int sum = SumLineArray(dimentionalArray, 0);
-for (int i = 1; i < dimentionalArray.GetLength(0); i++)
-{
-if (sum > SumLineArray(dimentionalArray, i))
-{
-sum = SumLineArray(dimentionalArray, i);
-minSum = i+1;
-}
-}
-Console.WriteLine($"\nСтрока c наименьшей суммой элементов: {minSum}");
