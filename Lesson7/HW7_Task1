@@ -1,1 +1,17 @@
+// Задача 1: Задайте значения M и N. Напишите
+// программу, которая выведет все натуральные числа
+// в промежутке от M до N. Использовать рекурсию, не
+// использовать циклы.
 
+Console.WriteLine("Введите M");
+int firstValue = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите N");
+int secondValue = Convert.ToInt32(Console.ReadLine());
+
+void NaturalValue(int m, int n)
+{
+    if (m > n) return;
+    Console.Write($"{m}, ");
+    NaturalValue(m + 1, n);
+}
+NaturalValue(firstValue, secondValue);
